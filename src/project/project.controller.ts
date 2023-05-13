@@ -6,13 +6,12 @@ import { Project } from './projectEntity';
 export class projectController {
   constructor(private readonly projectService: projectService) {}
   @Get()
-  getAllProjects(): Promise<Project[]> {
-    return this.projectService.getAllProject();
+  async getAllProjects(): Promise<Project[]> {
+    const projectdata = await this.projectService.getAllProject();
+    return projectdata;
   }
   @Post('/add')
   addNewProject(@Body() projectName: { project_name: 'string' }): Promise<any> {
-    console.log(projectName);
-
     return this.projectService.addNewProject({
       project_name: projectName.project_name,
       project_createdBy: 'hridhin k',

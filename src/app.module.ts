@@ -4,6 +4,10 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Project } from './project/projectEntity';
 import { projectModule } from './project/project.module';
+import { projectMemberModule } from './projectMember/projectMember.module';
+import { ProjectMember } from './projectMember/projectMemberEntity';
+import { projectLogModule } from './projectLog/projectLog.module';
+import { ProjectLog } from './projectLog/projectLogEntity';
 
 @Module({
   imports: [
@@ -14,10 +18,12 @@ import { projectModule } from './project/project.module';
       username: 'root',
       password: 'hridhin#567#',
       database: 'slog',
-      entities: [Project],
+      entities: [Project, ProjectMember, ProjectLog],
       synchronize: true,
     }),
     projectModule,
+    projectMemberModule,
+    projectLogModule,
   ],
   controllers: [AppController],
   providers: [AppService],

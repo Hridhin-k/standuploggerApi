@@ -1,10 +1,15 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+} from 'typeorm';
 @Entity()
 export class Project {
   @PrimaryGeneratedColumn()
   project_id: number;
 
-  @Column()
+  @Column({ unique: true })
   project_name: string;
 
   @Column()
@@ -12,4 +17,7 @@ export class Project {
 
   @Column({ default: true })
   project_isActive: boolean;
+
+  @CreateDateColumn()
+  project_createdAt: Date;
 }
